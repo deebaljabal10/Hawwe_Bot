@@ -2,17 +2,18 @@
 
 import telebot
 import google.generativeai as genai
-from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
-import time
+import os
+from dotenv import load_dotenv
 
-# ===== ضع مفاتيحك هنا =====
-TELEGRAM_TOKEN = "ضع_توكن_التلغرام_هنا"
-GEMINI_API_KEY = "ضع_مفتاح_الجيمناي_هنا"
-# =========================
+# تحميل المفاتيح من ملف .env
+load_dotenv()
+
+TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
+GEMINI_API_KEY = os.getenv('GEMINI_API_KEY')
 
 # تشغيل البوتات
-bot = telebot.TeleBot(8734437949:AAFyQGuqrqnam0jFBwPlWpFoIjiPJE7fTKk)
-genai.configure(api_key=AIzaSyASDOOxXJ3x05Bnz9JskK8ECJVeqw6QGsU)
+bot = telebot.TeleBot(TELEGRAM_TOKEN)
+genai.configure(api_key=GEMINI_API_KEY)
 model = genai.GenerativeModel('gemini-1.5-flash')
 
 # تخزين مؤقت للمحادثات
